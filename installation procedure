@@ -1,0 +1,18 @@
+
+Step-1: Install Docker
+
+
+
+Step-2: Install kubelet, Kubeadm, Kubectl
+
+
+
+Step-3: Install Kubeadm cluster in Master Node.
+
+
+
+Step-4: Join the "WorkerNode-1" to MasterNode. 
+
+           
+
+Step-5: Join the "WorkerNode-2" to MasterNode.
