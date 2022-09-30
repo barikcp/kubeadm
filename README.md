@@ -88,15 +88,11 @@ Step-5: Join the "WorkerNode-2" to MasterNode.​
 
 Step-6: Install CNI in Master Node.​
 
-    wget https://github.com/k3s-io/k3s/releases/download/v1.23.5%2Bk3s1/k3s   # Download the binary
+        
+    kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"![image](https://user-images.githubusercontent.com/113718872/193353928-b63a69c3-6cb6-41d0-9b3b-d7a690b92def.png)
 
-    chmod +x k3s ​                                                            # Give Executable permission  
 
-    sudo ./k3s server​                                                        # Install K3s cluster in Master Node   
     
-    sudo ./k3s kubectl get nodes -o wide                                      # Check how many nodes got created
-     
-    cat /var/lib/rancher/k3s/server/token                                     # Use this token for connecting Worker-Node to MasterNode
 
 Step-7: Display the nodes.​
 
