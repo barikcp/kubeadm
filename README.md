@@ -58,14 +58,21 @@ Step-2: Install kubelet, Kubeadm, Kubectl.​
 Step-3: Install Kubeadm cluster in Master Node.​
 
     wget https://github.com/k3s-io/k3s/releases/download/v1.23.5%2Bk3s1/k3s   # Download the binary
-
-    chmod +x k3s ​                                                            # Give Executable permission  
-
-    sudo ./k3s server​                                                        # Install K3s cluster in Master Node   
+    # Initialize kubeadm
+    kubeadm init
     
-    sudo ./k3s kubectl get nodes -o wide                                      # Check how many nodes got created
-     
-    cat /var/lib/rancher/k3s/server/token                                     # Use this token for connecting Worker-Node to MasterNode
+    # If you are the root user, you can run:
+    export KUBECONFIG=/etc/kubernetes/admin.conf     # It will be shown in kubeadm init command output
+    
+    #If you are other than "root" user, run below:    # It will be shown in kubeadm init command output
+    mkdir -p $HOME/.kube
+    sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+    sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+
+
+
+    
 
 Step-4: Join the "WorkerNode-1" to MasterNode.​
 
