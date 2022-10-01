@@ -2,7 +2,7 @@
 kubeadm
 Kubernetes cluster creation:
 
-Step-1:  Install Docker.​ (Fire these commands in MasterNode)
+Step-1:  Install Docker.​ (Fire these commands in MasterNode and WorkerNodes)
 
     sudo apt-get update   # Update the apt package index
       
@@ -33,7 +33,7 @@ Step-1:  Install Docker.​ (Fire these commands in MasterNode)
  
                      
 
-Step-2: Install kubelet, Kubeadm, Kubectl.​ (Fire these commands in MasterNode)
+Step-2: Install kubelet, Kubeadm, Kubectl.​ (Fire these commands in MasterNode and workerNodes)
 
     
     #Update the apt package index and install packages needed to use the Kubernetes apt repository:
@@ -55,7 +55,7 @@ Step-2: Install kubelet, Kubeadm, Kubectl.​ (Fire these commands in MasterNode
     
     
 
-Step-3: Install Kubeadm cluster in Master Node.​ (Fire these commands in MasterNode)
+Step-3: Install Kubeadm cluster in Master Node.​ (*****Fire these commands in MasterNode only)
 
     # Initialize kubeadm
     kubeadm init
@@ -75,29 +75,23 @@ Step-3: Install Kubeadm cluster in Master Node.​ (Fire these commands in Maste
 
     
 
-Step-4: Join the "WorkerNode-1" to MasterNode.​ (Fire these commands in WorkerNode-1)
+Step-4: Join the "WorkerNode-1" to MasterNode.​ (Fire this command in WorkerNode-1 only)
 
-    wget https://github.com/k3s-io/k3s/releases/download/v1.23.5%2Bk3s1/k3s   # Download the binary
+    #copy this command from the "kubeadm init" command execution output lastline from MasterNode (like below example)
+    #                   kubeadm join 10.160.0.19:6443 --token z5cjqc.n2npw36lyibc8f0h \
+    #                               --discovery-token-ca-cert-hash sha256:ecf74dba27b33833762ac39d67974886f61fe93568830763a997c57db9d800c6
 
-    chmod +x k3s ​                                                            # Give Executable permission  
 
-    sudo ./k3s server​                                                        # Install K3s cluster in Master Node   
+   
+
+Step-5: Join the "WorkerNode-2" to MasterNode.​  (Fire this command in WorkerNode-2 only)
+
     
-    sudo ./k3s kubectl get nodes -o wide                                      # Check how many nodes got created
-     
-    cat /var/lib/rancher/k3s/server/token                                     # Use this token for connecting Worker-Node to MasterNode
+    #copy this command from the "kubeadm init" command execution output lastline from MasterNode (like below example)
+    #                   kubeadm join 10.160.0.19:6443 --token z5cjqc.n2npw36lyibc8f0h \
+    #                               --discovery-token-ca-cert-hash sha256:ecf74dba27b33833762ac39d67974886f61fe93568830763a997c57db9d800c6
 
-Step-5: Join the "WorkerNode-2" to MasterNode.​  (Fire these commands in WorkerNode-2)
-
-    wget https://github.com/k3s-io/k3s/releases/download/v1.23.5%2Bk3s1/k3s   # Download the binary
-
-    chmod +x k3s ​                                                            # Give Executable permission  
-
-    sudo ./k3s server​                                                        # Install K3s cluster in Master Node   
     
-    sudo ./k3s kubectl get nodes -o wide                                      # Check how many nodes got created
-     
-    cat /var/lib/rancher/k3s/server/token                                     # Use this token for connecting Worker-Node to MasterNode
 
 Step-6: Install CNI in Master Node.​ (Fire this commands in MasterNode)
 
@@ -106,15 +100,9 @@ Step-6: Install CNI in Master Node.​ (Fire this commands in MasterNode)
 
 
     
-
 Step-7: Display the nodes.​ (Fire these commands in MasterNode)
 
-    wget https://github.com/k3s-io/k3s/releases/download/v1.23.5%2Bk3s1/k3s   # Download the binary
+    kubectl get nodes
+    kubectl get nodes -o wide
 
-    chmod +x k3s ​                                                            # Give Executable permission  
-
-    sudo ./k3s server​                                                        # Install K3s cluster in Master Node   
-    
-    sudo ./k3s kubectl get nodes -o wide                                      # Check how many nodes got created
-     
-    cat /var/lib/rancher/k3s/server/token                                     # Use this token for connecting Worker-Node to MasterNode
+  
