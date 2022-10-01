@@ -57,7 +57,6 @@ Step-2: Install kubelet, Kubeadm, Kubectl.​
 
 Step-3: Install Kubeadm cluster in Master Node.​
 
-    wget https://github.com/k3s-io/k3s/releases/download/v1.23.5%2Bk3s1/k3s   # Download the binary
     # Initialize kubeadm
     kubeadm init
     
