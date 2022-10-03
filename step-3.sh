@@ -9,4 +9,4 @@
     sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
     sudo chown $(id -u):$(id -g) $HOME/.kube/config
     
-    #********* Note down the "kubeadm join ...." command, need to fire in worker node for joining in masterNode  # shown in kubeadm init command output
+    #******** Note down the "kubeadm join ...." command, need to fire in worker node for joining in masterNode  # shown in kubeadm init command output
